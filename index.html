@@ -1,13 +1,14 @@
 <html>
 
-<body>
-    <script type="text/javascript" src="https://rawgit.com/131/h264-live-player/master/vendor/dist/http-live-player.js"></script>
-    <script>
-        const canvas = document.createElement("canvas");
-        const video = document.createElement("video");
+    <body>
+        <script type="text/javascript" src="https://rawgit.com/131/h264-live-player/master/vendor/dist/http-live-player.js"></script>
+        <script>
+            const canvas = document.createElement("canvas");
+            const video = document.createElement("video");
+            let canvasD = document.createElement("canvas");
 
 
-        document.body.appendChild(canvasD).setAttribute("id", "destination");
+            document.body.appendChild(canvasD).setAttribute("id", "destination");
 
         // Streaming to Canvas from Raspberry PI with Express Socket
 
@@ -24,7 +25,6 @@
         //Streaming to canvas 2D
 
         function StreamToCanvas2D() {
-            let canvasD = document.createElement("canvas");
             canvasD.width = video.videoWidth;
             canvasD.height = video.videoHeight;
             const ctxD = canvasD.getContext('2d');
