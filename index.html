@@ -4,14 +4,14 @@
     <script type="text/javascript" src="https://rawgit.com/131/h264-live-player/master/vendor/dist/http-live-player.js"></script>
     <script>
         const canvas = document.createElement("canvas");
-        document.body.appendChild(canvas);
+        //document.body.appendChild(canvas);
         //document.querySelector('canvas').style.visibility = "hidden"
         const video = document.createElement("video");
         document.body.appendChild(video);
         //document.querySelector('video').style.visibility = "hidden"
         var canvasD = document.createElement("canvas");
         document.body.appendChild(canvasD).setAttribute("id", "destination");
-        const srcCanvas = document.querySelector('canvas');
+        //const srcCanvas = document.querySelector('canvas');
         const dstVideo = document.querySelector('video');
         var canvasD = document.querySelector('#destination');
         const ctxD = canvasD.getContext('2d');
