@@ -1,0 +1,40 @@
+<html>
+
+<body>
+    <script type="text/javascript" src="https://rawgit.com/131/h264-live-player/master/vendor/dist/http-live-player.js"></script>
+    <script>
+        function createPage(callback) {
+        var canvas = document.createElement("canvas");
+        canvas.setAttribute("id", "source");
+        document.body.appendChild(canvas);
+        var dupCanvas = document.createElement("canvas");
+        document.body.appendChild(dupCanvas);
+        dupCanvas.setAttribute("id", "destination");
+        dupCanvas.setAttribute("width", "640");
+        dupCanvas.setAttribute("height", "480");
+
+
+        const wsavc = new WSAvcPlayer(canvas, "webgl");
+        const protocol = window.location.protocol === "http:" ? "ws:" : "ws:"
+        wsavc.connect(protocol + window.location.host + '/video-stream');
+
+        callback()
+        }
+
+        function streamtosecondcanvas() {
+        var source = document.getElementById('source');
+        var destination = document.getElementById('destination');
+
+        var stream = source.captureStream(15);
+        // Set the source of the <video> element to be the stream from the <canvas>.
+        const contextDup = destination.getContext("webgl");
+        contextDup.drawImage(stream,0,480,640,480);
+        console.log('This is a the capture of the source canvas');
+        console.log(stream)
+    }
+    createPage(streamtosecondcanvas);
+    </script>
+
+</body>
+
+</html>
