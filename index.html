@@ -19,7 +19,7 @@
 
 
         // Streaming to Canvas from Raspberry PI with Express Socket
-        const wsavc = new WSAvcPlayer(srcCanvas, "webgl");
+        const wsavc = new WSAvcPlayer(canvas, "webgl");
         const protocol = window.location.protocol === "http:" ? "ws:" : "ws:"
         wsavc.connect(protocol + '//' + window.location.host + '/video-stream');
 
