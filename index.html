@@ -5,26 +5,20 @@
     <script>
         const canvas = document.createElement("canvas");
         const video = document.createElement("video");
-
         var canvasD = document.createElement("canvas");
-        document.body.appendChild(canvasD).setAttribute("id", "destination");
-
-        //var canvasD = document.querySelector('#destination');
         const ctxD = canvasD.getContext('2d');
 
-
+        document.body.appendChild(canvasD).setAttribute("id", "destination");
 
         // Streaming to Canvas from Raspberry PI with Express Socket
+
         const wsavc = new WSAvcPlayer(canvas, "webgl");
         const protocol = window.location.protocol === "http:" ? "ws:" : "ws:"
         wsavc.connect(protocol + '//' + window.location.host + '/video-stream');
 
+        //Streaming to video
 
-        //Video !!!
-        // Optional frames per second argument.Better if empty
-        // Set the source of the <video> element to be the stream from the <canvas>.
-        //Streaming to Canvas
-        var stream = canvas.captureStream();
+        const stream = canvas.captureStream();
         video.srcObject = stream;
         video.play()
 
@@ -32,21 +26,16 @@
 
         function StreamToCanvas2D() {
             const width = video.videoWidth;
-            const height =video.videoHeight;
-
+            const height = video.videoHeight;
             canvasD.width = width;
             canvasD.height = height;
-
-
             setInterval(() => {
                 ctxD.drawImage(video, 0, 0, 640, 480);
-
             }, 15);
         }
 
         video.addEventListener('progress', StreamToCanvas2D);
+
     </script>
-
 </body>
-
 </html>
