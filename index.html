@@ -25,10 +25,10 @@
         //Streaming to canvas 2D
 
         function StreamToCanvas2D() {
-            const width = video.videoWidth;
-            const height = video.videoHeight;
-            canvasD.width = width;
-            canvasD.height = height;
+            //const width = video.videoWidth;
+            //const height = video.videoHeight;
+            canvasD.width = video.videoWidth;
+            canvasD.height = video.videoHeight;
             setInterval(() => {
                 ctxD.drawImage(video, 0, 0, 640, 480);
             }, 15);
