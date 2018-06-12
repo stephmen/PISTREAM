@@ -3,26 +3,29 @@
     <body>
         <script type="text/javascript" src="https://rawgit.com/131/h264-live-player/master/vendor/dist/http-live-player.js"></script>
         <script>
+            //Receiving <canvas> for H264(Rasberry PI Format) only loaded in memoy
             const canvas = document.createElement("canvas");
+
             const video = document.createElement("video");
             let canvasD = document.createElement("canvas");
 
-
             document.body.appendChild(canvasD).setAttribute("id", "destination");
 
+
         // Streaming to Canvas from Raspberry PI with Express Socket
+        // <canvas> WEBGL(H264)
+            const wsavc = new WSAvcPlayer(canvas, "webgl");
+            const protocol = window.location.protocol === "http:" ? "ws:" : "ws:"
+            wsavc.connect(protocol + '//' + window.location.host + '/video-stream');
 
-        const wsavc = new WSAvcPlayer(canvas, "webgl");
-        const protocol = window.location.protocol === "http:" ? "ws:" : "ws:"
-        wsavc.connect(protocol + '//' + window.location.host + '/video-stream');
+            //Streaming to <video>(captureStream)
 
-        //Streaming to video
+                const stream = canvas.captureStream();
+                video.srcObject = stream;
+                video.play()
 
-        const stream = canvas.captureStream();
-        video.srcObject = stream;
-        video.play()
+                //Streaming to <canvas> ctx 2D
 
-        //Streaming to canvas 2D
 
         function StreamToCanvas2D() {
             canvasD.width = video.videoWidth;
