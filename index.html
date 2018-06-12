@@ -37,6 +37,7 @@
             // get the screen's pixels data
             const w = 640
             const h = 480
+            const sample_size = 50
             var data = ctxD.getImageData(0, 0, w, h).data;
             // loop through rows and columns
             for (var y = 0; y < h; y+= sample_size) {
