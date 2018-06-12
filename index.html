@@ -39,6 +39,7 @@
             const h = 480
             const sample_size = 50
             var data = ctxD.getImageData(0, 0, w, h).data;
+            console.log(data)
             // loop through rows and columns
             for (var y = 0; y < h; y+= sample_size) {
               for (var x = 0; x < w; x+= sample_size) {
@@ -46,7 +47,7 @@
                 // and alpha values, so each pixel takes up four values
                 // in the array
                 var pos = (x + y * w) * 4;
-
+                console.log('Pos'+ pos)
                 // get red, blue and green pixel value
                 var r = data[pos];
                 var g = data[pos+1];
@@ -57,7 +58,7 @@
               }
             }
 
-            }, 100);
+            }, 44400);
         }
 
         video.addEventListener('progress', StreamToCanvas2D);
