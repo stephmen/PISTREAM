@@ -4,15 +4,14 @@
     <script type="text/javascript" src="https://rawgit.com/131/h264-live-player/master/vendor/dist/http-live-player.js"></script>
     <script>
         const canvas = document.createElement("canvas");
-        //document.body.appendChild(canvas);
-        //document.querySelector('canvas').style.visibility = "hidden"
+
         const video = document.createElement("video");
-        document.body.appendChild(video);
+        //document.body.appendChild(video);
         //document.querySelector('video').style.visibility = "hidden"
         var canvasD = document.createElement("canvas");
         document.body.appendChild(canvasD).setAttribute("id", "destination");
         //const srcCanvas = document.querySelector('canvas');
-        const dstVideo = document.querySelector('video');
+        //const dstideo = document.querySelector('video');
         var canvasD = document.querySelector('#destination');
         const ctxD = canvasD.getContext('2d');
 
@@ -29,8 +28,8 @@
         // Set the source of the <video> element to be the stream from the <canvas>.
         //Streaming to Canvas
         var stream = canvas.captureStream();
-        dstVideo.srcObject = stream;
-        dstVideo.play()
+        video.srcObject = stream;
+        video.play()
 
         //Streaming to canvas 2D
 
@@ -43,12 +42,12 @@
 
 
             setInterval(() => {
-                ctxD.drawImage(dstVideo, 0, 0, 640, 480);
+                ctxD.drawImage(video, 0, 0, 640, 480);
 
             }, 15);
         }
 
-        dstVideo.addEventListener('progress', StreamToCanvas2D);
+        video.addEventListener('progress', StreamToCanvas2D);
     </script>
 
 </body>
