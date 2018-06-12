@@ -28,7 +28,7 @@
         // Optional frames per second argument.Better if empty
         // Set the source of the <video> element to be the stream from the <canvas>.
         //Streaming to Canvas
-        var stream = srcCanvas.captureStream();
+        var stream = canvas.captureStream();
         dstVideo.srcObject = stream;
         dstVideo.play()
 
