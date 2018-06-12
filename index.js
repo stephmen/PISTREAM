@@ -9,8 +9,6 @@ app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
 
 app.ws('/video-stream', (ws, req) => {
     console.log('Client connected');
-
-
     ws.send(JSON.stringify({
       action: 'init',
       width: '640',
@@ -18,7 +16,6 @@ app.ws('/video-stream', (ws, req) => {
     }));
 
     var videoStream = raspividStream({ width: 640, height: 480, rotation: 180 });
-
     videoStream.on('data', (data) => {
         ws.send(data, { binary: true }, (error) => { if (error) console.error(error); });
     });
