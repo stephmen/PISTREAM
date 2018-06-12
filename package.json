@@ -1,5 +1,5 @@
 {
-  "name": "RPI to Canvas 2D",
+  "name": "RPI_Stream_to_Canvas_2d",
   "version": "1.0.0",
   "description": "A pure-JS Raspberry Pi webcam",
   "main": "index.js",
