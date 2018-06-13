@@ -7,7 +7,7 @@
             const canvas = document.createElement("canvas");
 
             const video = document.createElement("video");
-            let canvasD = document.createElement("canvas");
+            var canvasD = document.createElement("canvas");
 
             document.body.appendChild(canvasD).setAttribute("id", "destination");
 
@@ -31,13 +31,13 @@
             canvasD.width = video.videoWidth;
             canvasD.height = video.videoHeight;
             const ctxD = canvasD.getContext('2d');
-            setInterval(() => {
+            //setInterval(() => {
                 ctxD.drawImage(video, 0, 0, 640, 480);
 
             // get the screen's pixels data
-            const w = 640
-            const h = 480
-            const sample_size = 50
+            let w = 640
+            let h = 480
+            let sample_size = 50
             var data = ctxD.getImageData(0, 0, w, h).data;
             console.log(data)
             // loop through rows and columns
@@ -47,19 +47,22 @@
                 // and alpha values, so each pixel takes up four values
                 // in the array
                 var pos = (x + y * w) * 4;
-                console.log('Pos'+ pos)
+                console.log(pos)
+                console.log(sample_size)
                 // get red, blue and green pixel value
                 var r = data[pos];
                 var g = data[pos+1];
                 var b = data[pos+2];
+                console.log(r, g, b,);
+
                 // draw the pixels as blocks of colours
-                ctxD.fillStyle(rgb(r, g, b));
+                ctxD.fillStyle = 'rgb(' + a + ',' + b + ',' + c + ')'
                 ctxD.fillRect(x, y, sample_size, sample_size);
               }
-            }
-
-            }, 44400);
-        }
+              debugger
+              }
+            };
+        //}
 
         video.addEventListener('progress', StreamToCanvas2D);
 
