@@ -5,7 +5,6 @@
         <script>
             //Receiving <canvas> for H264(Rasberry PI Format) only loaded in memoy
             const canvas = document.createElement("canvas");
-
             const video = document.createElement("video");
             var canvasD = document.createElement("canvas");
 
@@ -38,7 +37,7 @@
             // get the screen's pixels data
             let w = 640
             let h = 480
-            let sample_size = 25
+            let sample_size = 10
             var data = ctxD.getImageData(0, 0, w, h).data;
             console.log(data)
             // loop through rows and columns
