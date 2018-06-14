@@ -7,8 +7,10 @@
             const canvas = document.createElement("canvas");
             const video = document.createElement("video");
             var canvasD = document.createElement("canvas");
+            let ctxD = canvasD.getContext('2d');
 
             document.body.appendChild(canvasD).setAttribute("id", "destination");
+            //let canvasD = document.querySelector("canvas")
 
 
         // Streaming to Canvas from Raspberry PI with Express Socket
@@ -27,19 +29,16 @@
 
 
         function StreamToCanvas2D() {
-            let canvasD = document.querySelector("canvas")
-            let ctxD = canvasD.getContext('2d');
             canvasD.width = video.videoWidth;
             canvasD.height = video.videoHeight;
-            setInterval(() => {
+            //setInterval(() => {
                 ctxD.drawImage(video, 0, 0, 640, 480);
 
             // get the screen's pixels data
             let w = 640
             let h = 480
-            let sample_size = 10
-            var data = ctxD.getImageData(0, 0, w, h).data;
-            console.log(data)
+            let sample_size = 5
+            let data = ctxD.getImageData(0, 0, w, h).data;
             // loop through rows and columns
             for (var y = 0; y < h; y+= sample_size) {
               for (var x = 0; x < w; x+= sample_size) {
@@ -47,22 +46,20 @@
                 // and alpha values, so each pixel takes up four values
                 // in the array
                 var pos = (x + y * w) * 4;
-                console.log(pos)
-                console.log(sample_size)
                 // get red, blue and green pixel value
                 var r = data[pos];
                 var g = data[pos+1];
                 var b = data[pos+2];
-                console.log(r, g, b,);
+
 
                 // draw the pixels as blocks of colours
                 ctxD.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')'
                 ctxD.fillRect(x, y, sample_size, sample_size);
               }
               }
-            }, 15);
+            //}, 333);
             };
-        //}
+
 
         video.addEventListener('progress', StreamToCanvas2D);
 
