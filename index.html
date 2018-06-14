@@ -28,10 +28,10 @@
 
 
         function StreamToCanvas2D() {
-            canvasD.width = video.videoWidth;
-            canvasD.height = video.videoHeight;
             let canvasD = document.querySelector("canvas")
             let ctxD = canvasD.getContext('2d');
+            canvasD.width = video.videoWidth;
+            canvasD.height = video.videoHeight;
             setInterval(() => {
                 ctxD.drawImage(video, 0, 0, 640, 480);
 
