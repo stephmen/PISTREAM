@@ -1,4 +1,9 @@
+<!DOCTYPE html>
 <html>
+<head>
+  <title>Page Title</title>
+</head>
+
 
 <body>
     <script type="text/javascript" src="https://rawgit.com/131/h264-live-player/master/vendor/dist/http-live-player.js"></script>
@@ -37,7 +42,7 @@
             // get the screen's pixels data
             let w = width
             let h = height
-            let sample_size = 3
+            let sample_size = 15
             let data = ctxD.getImageData(0, 0, w, h).data;
             // loop through rows and columns
             for (var y = 0; y < h; y += sample_size) {
@@ -45,7 +50,7 @@
                     // the data array is a continuous array of red, blue, green
                     // and alpha values, so each pixel takes up four values
                     // in the array
-                    var pos = (x + y * w) * 4;
+                    var pos = (x + y * 640) * 4;
                     //console.log('x',x,'y',y,'w',w)
                     //console.log(pos)
 
